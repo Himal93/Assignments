@@ -47,10 +47,9 @@ checkStock = async (product) => {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       if (product.amount % 2 === 0) {
-        console.log(`Product ${product.ProductName} is avalilabe!`);
-        resolve(true);
+        resolve(`Product ${product.ProductName} is avalilabe!`);
       } else {
-        reject(new error(`Sorry, ${product.ProductName} is out of stock!`));
+        reject(new Error(`Sorry, ${product.ProductName} is out of stock!`));
       }
     }, 2000);
   });
@@ -60,5 +59,14 @@ checkStock(product)
     console.log(result);
   })
   .catch((err) => {
-    console.error(err.message);
+    console.log(err);
   });
+
+checkProductStock = async (product) => {
+  try {
+    const result = await checkStock(product);
+    console.log(product);
+  } catch (err) {
+    console.log(err);
+  }
+};
